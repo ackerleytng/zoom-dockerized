@@ -1,0 +1,25 @@
+# Zoom, dockerized
+
+In case you want to cleanly remove zoom later, and be sure it isn't all over your system.
+
+This setup is intended to be as disposable as possible.
+
++ All zoom config is removed when the container exits.
++ Anything that can be provided to the container as read-only is provided as read-only
+
+## Usage
+
+Build zoom for your host. The build process adds a group `zoom-video` to the container with the same gid as the group that is allowed to use `/dev/video0` on your host.
+
+```
+./build.sh
+```
+
+> After building, this image can only be used on docker hosts whose `video` gid is the same as the one your host.
+> TLDR: just rebuild the image for every system you have.
+
+Start zoom
+
+```
+./zoom.sh
+```
