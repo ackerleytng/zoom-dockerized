@@ -23,3 +23,13 @@ Start zoom
 ```
 ./zoom.sh
 ```
+
+# Credits
+
++ jezzfraz: https://github.com/jessfraz/dockerfiles/blob/master/zoom-us/Dockerfile
+  + Her version doesn't work on my system because
+    + I'm using pulseaudio
+    + My X server checks the hostname for incoming connections
++ mdouchement: https://github.com/mdouchement/docker-zoom-us
+  + Didn't want use this directly because I to have anything installed on my system
++ Eldwin: For helping me figure out that my X server checks the hostname for incoming connections
