@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run --rm \
+podman run --rm \
        --device "/dev/video0" \
        --device "/dev/snd" \
        --device "/dev/dri" \

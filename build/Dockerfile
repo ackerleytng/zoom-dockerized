@@ -50,19 +50,10 @@ RUN curl -sSL $ZOOM_URL -o /tmp/zoom_setup.deb \
 	&& rm /tmp/zoom_setup.deb \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Create a new user so that we don't run zoom as root
-RUN useradd --user-group --create-home --shell /bin/bash zoom
-
 # start.sh handles the tokens required for zoom to communicate with the X server on your host
 COPY start.sh /home/zoom/start.sh
-RUN chown zoom:zoom /home/zoom/start.sh && chmod +x /home/zoom/start.sh
+RUN chmod +x /home/zoom/start.sh
 
-# Need to do this to let zoom use your webcam (/dev/video0)
-ARG VIDEO_GID
-RUN groupadd -g ${VIDEO_GID} zoom-video && usermod -aG zoom-video zoom
-
-# Don't run zoom as root
-USER zoom
 WORKDIR /home/zoom
 
 ENTRYPOINT ["/home/zoom/start.sh"]
